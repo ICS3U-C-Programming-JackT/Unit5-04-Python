@@ -4,34 +4,31 @@
 
 # Calculator program in python
 
-
 # Function to add
 def add(n1, n2):
-    print(n1, "+", n2, " = ", n1 + n2)
-
+    return n1 + n2
 
 # Function to subtract
 def subtract(n1, n2):
-    print(n1, "-", n2, " = ", n1 - n2)
-
+    return n1 - n2
 
 # Function to multiply
 def multiply(n1, n2):
-    print(n1, "*", n2, " = ", n1 * n2)
+    return n1 * n2
 
 # Function to divide
 def divide(n1, n2):
     if n2 == 0.0:
-        print(n1, "/", n2, " = ", "Undefined")
+        return "Undefined"
     else:
-        print(n1, "/", n2, " = ", n1 / n2)
+        return n1 / n2
 
 # Function for modulo
 def modulo(n1, n2):
     if n2 == 0.0:
-        print(n1, "%", n2, " = ", "Undefined")
+        return "Undefined"
     else:
-        print(n1, "%", n2, " = ", n1 % n2)
+        return n1 % n2
 
 # Function to handle inputs and call calculation functions
 def main():
@@ -41,30 +38,35 @@ def main():
     number1 = input("Enter the first number: ")
     number2 = input("Enter the second number: ")
 
-    # Try catch to prevent errors
+    # Try/catch to prevent errors
     try:
         number1 = float(number1)
         number2 = float(number2)
 
-        # Check operation input and call functions accordingly
+        # Determine which operation to perform
         if operation == "+":
-            add(number1, number2)
+            result = add(number1, number2)
         elif operation == "-":
-            subtract(number1, number2)
+            result = subtract(number1, number2)
         elif operation == "*":
-            multiply(number1, number2)
+            result = multiply(number1, number2)
         elif operation == "/":
-            divide(number1, number2)
+            result = divide(number1, number2)
         elif operation == "%":
-            modulo(number1, number2)
+            result = modulo(number1, number2)
         else:
             print("You didn't enter a proper operation!")
+            return
+
+        # Print result from main
+        if result == "Undefined":
+            print("Result: Undefined")
+        else:
+            print("Result:", result)
 
     except:
-
         # Error message:
-        print("Error: either", number1, "or", number2, "is string.")
-
+        print("Error: either", number1, "or", number2, "is not a valid number.")
 
 if __name__ == "__main__":
     main()
