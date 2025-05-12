@@ -5,30 +5,17 @@
 # Calculator program in python
 
 # Function to add
-def add(n1, n2):
-    return n1 + n2
-
-# Function to subtract
-def subtract(n1, n2):
-    return n1 - n2
-
-# Function to multiply
-def multiply(n1, n2):
-    return n1 * n2
-
-# Function to divide
-def divide(n1, n2):
-    if n2 == 0.0:
-        return "Undefined"
-    else:
-        return n1 / n2
-
-# Function for modulo
-def modulo(n1, n2):
-    if n2 == 0.0:
-        return "Undefined"
-    else:
-        return n1 % n2
+def calculate(sign,first_number,second_number):
+    if sign == "+":
+        return first_number + second_number
+    if sign == "-":
+        return first_number - second_number
+    if sign == "*":
+        return first_number * second_number
+    if sign == "/":
+        return first_number / second_number
+    if sign == "%":
+        return first_number % second_number
 
 # Function to handle inputs and call calculation functions
 def main():
@@ -44,25 +31,14 @@ def main():
         number2 = float(number2)
 
         # Determine which operation to perform
-        if operation == "+":
-            result = add(number1, number2)
-        elif operation == "-":
-            result = subtract(number1, number2)
-        elif operation == "*":
-            result = multiply(number1, number2)
-        elif operation == "/":
-            result = divide(number1, number2)
-        elif operation == "%":
-            result = modulo(number1, number2)
+        if operation in "+-*/%":
+            if operation in "/%" and number2 == 0:
+                print(number1,operation,number2,"= Undefined")
+            else:
+                result = calculate(operation,number1,number2)
+                print(number1,operation,number2,"=",result)
         else:
             print("You didn't enter a proper operation!")
-            return
-
-        # Print result from main
-        if result == "Undefined":
-            print("Result: Undefined")
-        else:
-            print("Result:", result)
 
     except:
         # Error message:
